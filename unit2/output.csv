@@ -1,0 +1,11 @@
+,playerID,birthYear,birthMonth,birthDay,birthCountry,birthState,birthCity,deathYear,deathMonth,deathDay,deathCountry,deathState,deathCity,nameFirst,nameLast,nameGiven,weight,height,bats,throws,debut,finalGame,retroID,bbrefID,nameFull
+0,aardsda01,1981,12,27,USA,CO,Denver,,,,,,,David,Aardsma,David Allan,205,75,R,R,2004-04-06,2013-09-28,aardd001,aardsda01,David Aardsma
+1,aaronha01,1934,2,5,USA,AL,Mobile,,,,,,,Hank,Aaron,Henry Louis,180,72,R,R,1954-04-13,1976-10-03,aaroh101,aaronha01,Hank Aaron
+2,aaronto01,1939,8,5,USA,AL,Mobile,1984.0,8.0,16.0,USA,GA,Atlanta,Tommie,Aaron,Tommie Lee,190,75,R,R,1962-04-10,1971-09-26,aarot101,aaronto01,Tommie Aaron
+3,aasedo01,1954,9,8,USA,CA,Orange,,,,,,,Don,Aase,Donald William,190,75,R,R,1977-07-26,1990-10-03,aased001,aasedo01,Don Aase
+4,abadan01,1972,8,25,USA,FL,Palm Beach,,,,,,,Andy,Abad,Fausto Andres,184,73,L,L,2001-09-10,2006-04-13,abada001,abadan01,Andy Abad
+5,abadfe01,1985,12,17,D.R.,La Romana,La Romana,,,,,,,Fernando,Abad,Fernando Antonio,220,73,L,L,2010-07-28,2013-09-27,abadf001,abadfe01,Fernando Abad
+6,abadijo01,1854,11,4,USA,PA,Philadelphia,1905.0,5.0,17.0,USA,NJ,Pemberton,John,Abadie,John W.,192,72,R,R,1875-04-26,1875-06-10,abadj101,abadijo01,John Abadie
+7,abbated01,1877,4,15,USA,PA,Latrobe,1957.0,1.0,6.0,USA,FL,Fort Lauderdale,Ed,Abbaticchio,Edward James,170,71,R,R,1897-09-04,1910-09-15,abbae101,abbated01,Ed Abbaticchio
+8,abbeybe01,1869,11,11,USA,VT,Essex,1962.0,6.0,11.0,USA,VT,Colchester,Bert,Abbey,Bert Wood,175,71,R,R,1892-06-14,1896-09-23,abbeb101,abbeybe01,Bert Abbey
+9,abbeych01,1866,10,14,USA,NE,Falls City,1926.0,4.0,27.0,USA,CA,San Francisco,Charlie,Abbey,Charles S.,169,68,L,L,1893-08-16,1897-08-19,abbec101,abbeych01,Charlie Abbey

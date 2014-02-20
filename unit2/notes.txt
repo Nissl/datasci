@@ -1,0 +1,158 @@
+Unit 2: Data wrangling (also called data munching)
+
+May take up to 70% of a data scientist's time!
+Script to pull from website
+Set up database
+Lots of missing values
+Some method for cleaning up the data
+
+Three data sets.
+Baseball players, Indian ID program - Adhar, last.fm API
+
+Data sources: files, database, web APIs
+
+Key is understanding the structure of the data. On average, >50% of time figuring out idiosyncracies. Seeing weird edge cases. 
+
+Acquiring data often isn't fancy. Find stuff on internet!
+
+A lot of data stored in text files and on gov't websites.
+
+Sean Lahman baseball data.
+First row: Hank Aaron
+
+3 common formats: CSV, XML, JSON
+
+CSV - series of rows, each row is an entry
+Header row, csv values tell us what each entry means
+If they don't have a value, two commas in a row (Hank Aaron: managerID)
+
+XML - looks pretty close to HTML
+<Document Element>
+  <Table>
+    <lahmanID>1</lahmanID>
+    <playerID>aaronha01</playerID>
+    <managerID/>
+
+JSON
+{
+  "lahmanID": 1,
+  "playerID": "aaronha01",
+  "managerID": " ",
+}
+
+Advantage of XML & JSON: support nested structures in a way that CSV cannot
+
+Can have JSON, CSV listed at .txt files. 
+Subway data: CSV, Weather Underground data: JSON
+We won't explicitly discuss XML - see Data Wrangling class taught at Udacity, with MongoDB
+
+CSV - very popular storage - easy to read by both humans and computers
+Excel export (yup)
+
+import pandas
+baseball_data = pandas.read_csv("Master.csv")
+print baseball_data ['nameFirst']
+baseball_data['height_plus_weight'] = baseball_data['height'] + baseball_data['weight']
+baseball_data.to_csv('baseball_data_with_weight_height.csv')
+
+check pandas documentation for more options
+
+Often stored in relational databases as well. Columns and rows. Column specifies type. Each set is a table, not a spreadsheet.
+
+Important to be somewhat familiar with relational databases. We won't discuss keys, indices, etc. (see data wrangling with MongoDB)
+
+Aadhaar data - 12 digit number ID for everyone in India - database describes enrollment/rejection by program
+
+Question: why relational database useful
+- straightforward to extract data with complex filters
+- scales well
+- ensures all data is consistently formatted
+* NOT *
+- redundant - update once
+- hot & new - they've been around a long time
+
+How to use 
+Aadhaar Data - one table
+
+Schema
+Blueprint that tells database how we're storing our data - e.g. district_name is a string, population is an int, etc.
+If values unspecified, column set to NULL or default values stored in table definition
+Data is retrieved via SQL-like languages
+
+SELECT * FROM aadhaar_data; # selects everything from aadhaar_data
+SELECT * FROM aadhaar_data LIMIT 20; # return first 20 rows
+SELECT district, subdistrict FROM aadhaar_data LIMIT 20;
+
+Complex queries
+Select * FROM aadhaar_data WHERE state = 'Gujarat'; # WHERE must go directly after table name
+
+GROUP BY, AGGREGATE FUNCTION
+SELECT district, SUM(aadhaar_generated) FROM aadhaar_data GROUP BY district;
+
+SUM is an aggregate function, takes some set of values and performs a mathematical operation. Others include COUNT, MIN, MEAN, MAX, etc.
+Sum values up by district, group so that only one result.
+
+SELECT district, subdistrict, SUM(aadhaar_generated) FROM aadhaar_data GROUP BY district, subdistrict;
+
+SELECT district, subdistrict, SUM(aadhaar_generated) FROM aadhaar_data WHERE age > 60 GROUP BY district, subdistrict;
+
+APIs - Application programming interfaces
+REST - Representational State Transfer - take data wrangling for more.
+Access file from a website like, say, Twitter.
+
+Go to last_fm API page
+Data is in JSON format
+Not equivalent to Python dicts, but can think of as similar abstractions
+
+Python program - specify URL, data = requests.get(text).url
+Could write a REGEX to parse, but headache. Use JSON library.
+
+url = 'insert url'
+data = requests.get(url).text
+data = json.loads(data)
+print type(data)
+print data
+data['artist']
+
+Sanity checking data
+Does the data make sense? Is there a problem? Does it look like I expect?
+To get more into this, take Exploratory Data Analysis
+Pandas has a useful function called describe.
+
+baseball = pandas.read_csv(path)
+baseball.describe()
+
+Shows count, mean, standard dev, min, 25/50/75 pc, max
+In general, look for outliers in min/max relative to 25/75
+
+Here, notice differences in count. Why do you think values may be missing?
+Lots, a few most important:
+- occasional errors prevent data from being recorded
+- subset of subjects or even types are systematically missing certain data attributes, or missing entirely
+
+Occasional failures in collection
+Example: door to door survey, collector loses a few, misses a few streets due to geography
+In baseball player set, might see missing values here and there.
+
+Nonresponse - subset of people don't answer questions, or respond at all. Can lead to biases in data, false conclusions.
+
+If missing values distributed at random, good chance to still be representative.
+
+Missing values at random. Wat do? Partial deletion or impution.
+Partial deletion - limit to values where we have all info available.
+Listwise deletion - exclude datapoint from all analyses, even if some ok
+Pairwise deletion - exclude datapoint only when not suitable for question at hand
+
+Impution
+Where we don't have much data, or representativeness might be compromised - make an intelligent guess. Many ways, new still being developed. This is a really hard problem!
+
+Easiest way: take mean, fill in missing values. Assign Babe Ruth, Ichiro the same weight.
+Good: don't change mean. But what if we were studying height/weight relationships? Correlation lessened.
+
+Impute using linear regression (see next lesson for more detail) - predict missing values using information we have - train a linear model. But overemphasizes existing trends. And exact values have too much certainty. 
+
+pandas dataframes have a method:
+fillna(value) such that you can pass in a static value to replace any NAs in a dataframe or series. 
+
+dataframe['column'] = dataframe['column'].fillna(value)
+
