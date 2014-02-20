@@ -1,0 +1,24 @@
+Unit 2: Data wrangling (also called data munching)
+
+May take up to 70% of a data scientist's time!
+Script to pull from website
+Set up database
+Lots of missing values
+Some method for cleaning up the data
+
+Three data sets.
+Baseball players, Indian ID program, last.fm
+
+Data sources: files, database, web APIs
+
+Key is understanding the structure of the data. On average, >50% of time figuring out idiosyncracies. Seeing weird edge cases. 
+
+Acquiring data often isn't fancy. Find stuff on internet!
+
+A lot of data stored in text files and on gov't websites.
+
+sean lahman baseball data.
+
+3 common formats: CSV, XML, JSON
+
+CSV

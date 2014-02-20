@@ -1,0 +1,48 @@
+Data science 
+
+Substantive expertise - ask the right questions, understand the structure of the data set, communicate findings clearly.
+
+Data science can solve problems like
+- rec movies on Netflix
+- make FB feed
+- suggest follows on twitter
+- webapps - OKC, Uber, etc. - improve UI, publish findings
+
+Unexpected problems
+- bioinformatics
+- urban planning - e.g. Chicago bus crowding
+- astrophysics - databases from sky survey
+- public health - target buildings that produce emergencies
+- sports - huge amounts of movement data (Tor. Raptors)
+
+Data scientists use Pandas - a Python package. R + Python = Pandas. 
+
+Useful for manipulating data, implements some of the best R features. R-lite.
+
+Data in Pandas is contained in a structure called a dataframe. A Dataframe is a 2d labeled data structure. String, int, float, boolean. There maybe NaN entries for not specified.
+
+loaded data into df.
+
+df['age'] - lists column
+df.loc['a'] - lists row a
+
+vectorized operations
+
+d = {'one': Series([1., 2., 3.], index=['a', 'b', 'c'])
+	'two': Series([1., 2., 3., 4.], index=['a', 'b', 'c', 'd']}
+
+df = Dataframe(d)
+
+df.apply(numpy.mean)
+df['one'].map(lambda x: x>=1)
+df.applymap(lambda x: x>=1)
+
+check full dox
+
+First dataset: riders on the Titanic. You'll build several models. Can we predict who will or won't survive?
+
+Class project: pull data on Subway ridership and Weather Underground data. Does weather influence Subway riding? Can we predict? Is it busier at some times rather than others?
+
+Good data scientist: what are you interested in? (Unless you're an uber-nerd who loves to find patterns in things.) Have an inquisitive mindset.
+
+Lesson 2: acquiring and massaging data into a workable format.
