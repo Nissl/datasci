@@ -89,7 +89,7 @@ Select * FROM aadhaar_data WHERE state = 'Gujarat'; # WHERE must go directly aft
 GROUP BY, AGGREGATE FUNCTION
 SELECT district, SUM(aadhaar_generated) FROM aadhaar_data GROUP BY district;
 
-SUM is an aggregate function, takes some set of values and performs a mathematical operation. Others include COUNT, MIN, MEAN, MAX, etc.
+SUM is an aggregate function, takes some set of values and performs a mathematical operation. Others include COUNT, MIN, AVG, MAX, etc.
 Sum values up by district, group so that only one result.
 
 SELECT district, subdistrict, SUM(aadhaar_generated) FROM aadhaar_data GROUP BY district, subdistrict;
@@ -155,4 +155,14 @@ pandas dataframes have a method:
 fillna(value) such that you can pass in a static value to replace any NAs in a dataframe or series. 
 
 dataframe['column'] = dataframe['column'].fillna(value)
+
+This is just the tip of the iceberg! There are many more robust and sophisticated methods that are less likely to amplify/attenuate data patterns.
+
+Assignment #2
+Acquire weather data via weather underground API
+Get a sense of data via SQL queries
+Clean & process data
+
+Next lesson: more sophisticated analyses
+
 
