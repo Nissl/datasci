@@ -26,7 +26,7 @@ def num_rainy_days(filename):
     '''
     weather_data = pandas.read_csv(filename)
 
-    q = "SELECT SUM(rain) FROM weather_data WHERE cast(rain as integer) = 1;"
+    q = "SELECT COUNT(*) FROM weather_data WHERE cast(rain as integer) = 1;"
     
     #Execute your SQL command against the pandas frame
     rainy_days = pandasql.sqldf(q.lower(), locals())

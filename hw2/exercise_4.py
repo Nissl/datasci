@@ -21,7 +21,7 @@ def avg_min_temperature(filename):
     weather_data = pandas.read_csv(filename)
 
     #q = "SELECT AVG(mintempi) from weather_data WHERE cast(rain as integer) = 1 AND mintempi > 55;"
-    q = "SELECT AVG(mintempi) from weather_data WHERE cast(rain as integer) = 1 AND mintempi > 55;"
+    q = "SELECT AVG(cast (mintempi as integer)) FROM weather_data WHERE cast(rain as integer) = 1 AND mintempi > 55;"
 
     #Execute your SQL command against the pandas frame
     mean_temp_weekends = pandasql.sqldf(q.lower(), locals())
