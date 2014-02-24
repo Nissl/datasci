@@ -1,0 +1,77 @@
+Chapter 4 - information visualization
+
+Effective communication of complex quantitative ideas.
+Clarity, precision, efficiency.
+
+Help you notice things about the data that might go unnoticed.
+
+Highlight information of interest, or tell a story.
+
+Example. Napoleon's march on Russia. Sheer amount of loss in graphic.
+Flow line of Napoleon's army. 400k -> 100k
+
+Retreat frozen, only 10k left.
+
+Four important ingredients to visualization: visual cues, coordinate systems, scale / data types, and context.
+
+Position - visual encoding - space efficient
+Length - bar charts
+Angle - think pie charts - parts of a whole - avoid if small difference
+Direction - slope of line - see increases/decreases - small changes tricky
+Shape - different values
+Area/volume of shape
+
+Visual encoding - color hue and saturation.
+Diff color - diff groups
+Saturation - intensity of color - intensity or quantity of value
+When using color - don't use more than a dozen hues. Gets hard to differentiate
+
+Ranking of accuracy: position, angle, area, saturation
+Most -> least
+position, length, angle, direction, area, volume, saturation, hue
+
+Plotting in python
+Many packages
+	- matplotlib is very popular
+	- ggplot - like R library
+We're going to use ggplot - why? 
+	- looks a little better
+	- grammar of graphics
+	- plays nice with pandas dataframes
+
+Grammar of graphics
+	- plots convey information through aesthetics (xpos, ypos, etc)
+	- elements in a plot are geometric shapes (points, lines, bars)
+
+Plotting python:
+
+1. make plot
+ggplot(data, aes(xvar, yvar))
+data is a pandas dataframe
+xvar, yvar are columns in the dataframe
+ggplot(data, aes(xvar, yvar)) + geom_point(color = 'coral') + geom_line(color = 'coral') + ggtitle('title') + xlab('x-label') + ylab('y-label')
+
+(see basic_plot.py for implementation that works locally)
+
+Data types:
+- numeric data
+	- discrete (homerun #) or continuous (player batting average)
+- categorical data
+	- represents characteristics - may take numeric values (e.g. number code position) - but no mathematical meaning.
+	- ordinal data - some categories, but ranking e.g. rank movie 1-5
+	- ordinal data is treated categorically, but ordered low to high
+- time series
+	- data collected via repeated measurements over time
+	- e.g. homeruns hit by player over time.
+
+Scales
+categorical - bar plot with positions vs. homeruns
+
+Time can be measured with different granularities. Days, months, years. Depends on what you are trying to communicate with data.
+
+Bad graph. Why is it bad? My answer:
+The rows of people and dots together are confusing. The people graphic doesn't seem to be scaling. You could also have an issue with the lack of a y-axis suggesting nurses have increased ~90$  in the last few years. Also, is the last element here incorporating 14 months, vs. 12 for the others? That's misleading.
+
+Answer: 4 sick people = 43000. 28 sick people = 3000. 8 sick people = 1000x
+
+
