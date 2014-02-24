@@ -1,0 +1,124 @@
+Chapter 3 - data analysis
+
+Stats and machine learning to determine differences.
+Basic familiarity with stats assumed - if necessary, may want to take stats 95
+
+Statistical rigor
+Signifcance test
+- Using our data, can we disprove an assumption with a pre-defined level of confidence?
+- Poll officemates - 10/10 say favorite color is blue. Unlikely 100/100 will say.
+- Say a website as A/B testing a landing page - 500k visitors in each group. 50% vs. 50.5% difference actually matters.
+- Kurt Smith at Twitter - chemicals > startup (risk modeling) > social media
+
+Stats tests useful:
+- Formalized framework for comparing and evaluating data
+- Evaluate whether perceived effects in our dataset reflect differences across the whole population
+
+Example: compare batting averages of left-handed and right-handed hitters.
+- Many tests make assumptions about data distribution
+- Very common distribution - NORMAL DISTRIBUTION
+- Two parameters, mean and standard deviation. Variance (sd squared)
+- Gaussian function
+
+f(x) = 1/(SD * sqrt(2 * PI)) * e^(-(x-MEAN)^2/(2 * SD^2))
+
+Common parametric tests
+T-test - accept or reject null hypothesis - drawn from population, or equiv. values
+test statistic - t, here. 
+One sample t-test, mu = mu-nought
+Two sample mu-nought and mu-one are equal
+
+A few different versions of t-test
+- equal sample size?
+- same variance?
+
+Welch's t-test most general - doesn't assume equal sample size or variance
+t = (mu-1 - mu-2) / sqrt(variance1/N1 + variance2/n2)
+
+nu - degrees of freedom
+(review)
+
+nu = (variance1/n1 + variance2/n2)^2 / (variance1^2/N1^2/nu1 + variance2^2/N2^2/nu2)
+
+p-value is the probability of obtaining a test statistic at least as extreme as ours if the null hypothesis was true
+
+calc T and nu for samples:
+1: N = 150, mu = .299, var = .05
+2: N = 165, mu = .307, var = .08
+
+t = (mu-1 - mu-2) / sqrt(variance1/N1 + variance2/n2)
+t = .280
+nu = (variance1/n1 + variance2/n2)^2 / (variance1^2/N1^2/nu1 + variance2^2/N2^2/nu2)
+nu = (.05/150 + .08/165)^2/(.05^2/150^2/149 + .08^2/165^2/164)
+nu = 307.199
+
+Simple way to do the above in python
+import scipy.stats
+scipy.stats.ttest_ind(list_1, list_2, equal_var=False)
+Last argument makes it equivalent to Welch's t-test
+returns tuple (t-value, p-value for 2-sided test)
+
+Non-parametric test - with a huge sample, may still be able to use t.
+Mann-Whitney U does not assume any underlying distribution
+u, p = scipy.stats.mannwhitneyu(pop1, pop2)
+u - test-stat
+p - *one-sided* p-value 
+only tests whether from same population, not higher mean/median
+report with other info, sample means, medians, etc.
+
+Shapiro-Wilk test - 
+w, p = scipy.stats.shapiro(data)
+w - test stat
+p - what is the likelihood that w value would be as extreme as we see given normal disttribution
+
+Predicting future data - impution/regressoin, machine learning
+
+Machine learning - a branch of AI focused on constructing systems that learn from large amounts of data to make predictions
+
+What is the difference between statistics and machine learning? Not much, fields converging. Significant philosophical differences:
+Stats - analyze data, draw valid conclusions
+ML - make predictions - less worried about assumptions
+
+Two major types:
+supervised learning, unsupervised learning
+data -> model -> predictions
+
+Supervised learning:
+train model with inputs 
+
+Unsupervised learning:
+trying to understand structure of data
+clustering (K-mean, hierarchical)
+PCA
+
+Predicting homeruns - take a bunch of info - height, weight, birth year, prediction -> model -> predictions
+
+Machine learning - linear regression with gradient descent
+Linear regression
+output Y
+inputs (X1...XN)
+coefficients(theta1...thetaN) small theta, not important, large theta, very important
+
+Best equation minimizes the difference between predicted & observed y
+Look at error squared.
+Lower sum of error squared is better.
+
+Gradient Descent
+bigtheta - all thetas
+cost function J(bigtheta) = 1/2*(h(x^i)-y)^2
+
+How do we find the best theta values?
+Search algorithm iteratively changes until it converges at a minimum value
+Algorithm is called gradient descent
+alpha = learning rate - smaller rates cause algorithm to take longer
+larger values - converge more quickly, but may skip minimum cost function value
+best way is to check, make sure cost function always going down. If not, learning rate too high.
+
+Cost function is still pretty high. Maybe attributes have little bearing, or relationship is non-linear. How do we assess model quality?
+
+Coefficient of determination
+R^2 = 1 - (sum(yi - fi)^2/sum(yi - ybar)^2)
+
+data = yi...yn
+predictions = f1...fn
+average of data = ybar
