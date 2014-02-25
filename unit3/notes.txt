@@ -122,3 +122,12 @@ R^2 = 1 - (sum(yi - fi)^2/sum(yi - ybar)^2)
 data = yi...yn
 predictions = f1...fn
 average of data = ybar
+
+Additional real-world considerations
+There are many types of linear regression. Ordinary least-squares finds best, gradient descent does not. 
+What are the confidence intervals on our parameters (what is the likelihood of getting this value if parameter has no effect?)
+Over/underfitting (over esp. with more compliated models than linear) - one way to deal is to split into training & test sets. "Cross-validation."
+
+Cost function may have multiple local minima. - May need to try lots of different inital values. Seed random values for repeatability.
+
+Next unit: data visualization.

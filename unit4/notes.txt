@@ -74,4 +74,13 @@ The rows of people and dots together are confusing. The people graphic doesn't s
 
 Answer: 4 sick people = 43000. 28 sick people = 3000. 8 sick people = 1000x
 
+Examples - graph by color - no answer as to how to select color in ggplot.
 
+Visualizing time series data - use for our project - format for MTA & weather data
+
+Boston Red Sox winning percentage by year - scatter plot to start
+Puts focus on individual values. Hard to discern trends.
+Now, we add a line (looks like previous figs, now)
+Emphasizes trends. Can see that 90s were a dip, 2000s were pretty good.
+But that's year to year. Instead, LOESS curve. Weighted regression that captures overall trends. 
+What if we wanted to do a slightly more complex analysis? Can use size of points to reflect number of homeruns hit that year. Saturation to double up.

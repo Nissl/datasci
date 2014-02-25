@@ -23,10 +23,6 @@ def lineplot(hr_year_csv):
     # https://github.com/yhat/ggplot/
 
     hr_year = pandas.read_csv(hr_year_csv)
-    years = hr_year['yearID'].tolist()
-    print years
-    homeruns = hr_year['HR'].tolist()
-    print homeruns
     print (ggplot(hr_year, aes('yearID', 'HR')) + 
            geom_point(color = 'coral') + geom_line(color = 'coral') + 
            ggtitle('Home Runs by Year') + xlab('Year') + ylab('Home Runs'))
