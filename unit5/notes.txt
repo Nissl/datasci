@@ -1,0 +1,34 @@
+Unit 5: Mapreduce
+
+What happens when we have a truly gigantic data set?
+
+Hadoop, hive, mapreduce all involve breaking data apart and working on it in parallel
+
+People use "big data" a lot. Some people might tell you it's "too big for excel" but really it means "too large for 1 disk" Good approx. lower limit at the moment: 5 TB
+
+E.g. Google, catalog and index all the books in the world, or look through their text.
+
+Mapreduce only works when you can have machines do individual tasks without communicating. Things that would be pretty easy with a SQL database can get tricky fast with mapreduce. So only use it when things are truly big!
+
+Things that have been tackled with mapreduce: 
+- discover new oil reserves from ship data (Chevron)
+- manage huge amounts of seller/buyer data on e-commerce (eBay)
+- ID malware and cyber attack patterns for online security (IPTrust)
+- Help doctors answer questions about patients' health (Epixio)
+
+Basics of mapreduce
+Parallel programming model. Computation done via two functions: mapper and reducer. Send individual documents to multiple mappers, which in turn produce many key-value pairs. Reducer drops down to single key-value pairs.
+
+Say I want to count each word in a document (e.g., Alice in Wonderland)
+Without mapreduce: create a python dictionary with word-count key-value pairs.
+
+Project: make code to do this.
+Now what if the text being fed in was every book *ever*?
+
+Mapper takes in document, returns intermediate key-value pairs. These keys are shuffled to make sure all values with same key wind up on reducer. Separated by tab, formatting-wise. If there are duplicates, multiple key-value pairs will be emitted.
+
+(Seems like the sorting/assignment step is a big one too? But we skipped it.)
+
+Reducer - looks at key - keeps adding up as long as the key is the same. When the key changes, it prints out the current key and word count. Print a final key/value pair at the end.
+
+Using mapreduce with aadhaar data. 
